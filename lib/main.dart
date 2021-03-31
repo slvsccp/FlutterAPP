@@ -1,35 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: Scaffold(
-      body: Column(
-        children: <Widget>[
-          Card(
-            child: ListTile(
-              leading: Icon(Icons.monetization_on),
-              title: Text('1500.00'),
-              subtitle: Text('0003'),
-            ),
-          ),
-        ],
+void main() => runApp(MaterialApp(
+      home: Scaffold(
+        body: listaTransferencia(),
+        appBar: AppBar(
+          title: Text('Transferências'),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+        ),
       ),
-      appBar: AppBar(
-        title: Text('Transferências'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
-      ),
-    ),
-  ));
-}
+    ));
 
-class ListaTransferencias extends StatelessWidget {
+class listaTransferencia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    throw UnimplementedError();
+    // TODO: implement build
+    return Column(
+      children: <Widget>[
+        ItemTransferencia(Transferencia(200.0, 0001)),
+        ItemTransferencia(Transferencia(300.0, 2001)),
+        ItemTransferencia(Transferencia(800.0, 1001)),
+      ],
+    );
   }
+}
 
+class ItemTransferencia extends StatelessWidget {
+  final Transferencia _transferencia;
+
+  ItemTransferencia(this._transferencia);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+        child: ListTile(
+      leading: Icon(Icons.monetization_on),
+      title: Text(_transferencia.valor.toString()),
+      subtitle: Text(_transferencia.numeroConta.toString()),
+    ));
+  }
+}
+
+class Transferencia {
+  final double valor;
+  final int numeroConta;
+
+  Transferencia(this.valor, this.numeroConta);
 }
