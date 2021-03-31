@@ -3,26 +3,34 @@ import 'package:flutter/cupertino.dart';
 
 void main() => runApp(MaterialApp(
       home: Scaffold(
-        body: listaTransferencia(),
-        appBar: AppBar(
-          title: Text('Transferências'),
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-        ),
+        body: FormularioTransferencia(),
       ),
     ));
+
+class FormularioTransferencia extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
 
 class listaTransferencia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return Column(
-      children: <Widget>[
-        ItemTransferencia(Transferencia(200.0, 0001)),
-        ItemTransferencia(Transferencia(300.0, 2001)),
-        ItemTransferencia(Transferencia(800.0, 1001)),
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Transferências'),
+      ),
+      body: Column(
+        children: <Widget>[
+          ItemTransferencia(Transferencia(200.0, 0001)),
+          ItemTransferencia(Transferencia(300.0, 2001)),
+          ItemTransferencia(Transferencia(800.0, 1001)),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
