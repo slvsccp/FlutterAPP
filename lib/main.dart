@@ -27,26 +27,28 @@ class FormularioTransferencia extends StatelessWidget {
       appBar: AppBar(
         title: Text('Efetuar Transferência'),
       ),
-      body: Column(
-        children: <Widget>[
-          Editor(
-            controlador: _controladorCampoNumeroConta,
-            rotulo: 'Número da Conta',
-            dica: '000000',
-          ),
-          Editor(
-            rotulo: 'Valor',
-            controlador: _controladorCampoValor,
-            icone: Icons.monetization_on,
-            dica: '0.00',
-          ),
-          RaisedButton(
-            onPressed: () {
-              _criaTransferencia(context);
-            },
-            child: Text('Confirmar'),
-          ),
-        ],
+      body: SingleChildScrollView(
+              child: Column(
+          children: <Widget>[
+            Editor(
+              controlador: _controladorCampoNumeroConta,
+              rotulo: 'Número da Conta',
+              dica: '000000',
+            ),
+            Editor(
+              rotulo: 'Valor',
+              controlador: _controladorCampoValor,
+              icone: Icons.monetization_on,
+              dica: '0.00',
+            ),
+            RaisedButton(
+              onPressed: () {
+                _criaTransferencia(context);
+              },
+              child: Text('Confirmar'),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -121,7 +123,9 @@ class ListaTransferenciasState extends State<ListaTransferencias> {
           future.then((transferenciaRecebida) {
             debugPrint('Chegou no then do future');
             debugPrint('$transferenciaRecebida');
-            setState(()=> widget._transferencias.add(transferenciaRecebida));
+            if(transferenciaRecebida != null){
+              setState(()=> widget._transferencias.add(transferenciaRecebida));
+            }
           });
         },
         child: Icon(Icons.add),
@@ -158,3 +162,4 @@ class Transferencia {
     return 'Transferencia => Valor da Transferencia: $valor, Numero da Conta: $numeroConta';
   }
 }
+
